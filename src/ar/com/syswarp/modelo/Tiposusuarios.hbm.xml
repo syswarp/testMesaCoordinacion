@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26/05/2020 18:38:01 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ar.com.syswarp.modelo.Tiposusuarios" table="tiposusuarios" schema="public" optimistic-lock="version">
+        <id name="idtipousuario" type="int">
+            <column name="idtipousuario" />
+         <generator class="sequence-identity">
+            <param name="sequence">tiposusuarios_idtipousuario_seq</param>
+        </generator>
+        </id>
+        <property name="tipousuario" type="string">
+            <column name="tipousuario" length="50" not-null="true" unique="true" />
+        </property>
+        <set name="usuarioses" table="usuarios" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idtipousuario" not-null="true" />
+            </key>
+            <one-to-many class="ar.com.syswarp.modelo.Usuarios" />
+        </set>
+    </class>
+</hibernate-mapping>

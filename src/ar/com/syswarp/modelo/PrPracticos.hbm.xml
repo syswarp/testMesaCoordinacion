@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26/05/2020 18:38:01 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ar.com.syswarp.modelo.PrPracticos" table="pr_practicos" schema="public" optimistic-lock="version">
+        <id name="idpractico" type="int">
+            <column name="idpractico" />
+        <generator class="sequence-identity">
+            <param name="sequence">pr_practicos_idpractico_seq</param>
+        </generator>
+            
+        </id>
+        <property name="practico" type="string">
+            <column name="practico" length="50" not-null="true" />
+        </property>
+        <property name="habilitacion" type="string">
+            <column name="habilitacion" length="10" unique="true" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="telefono" length="30" />
+        </property>
+        <property name="celular" type="string">
+            <column name="celular" length="30" />
+        </property>
+        <property name="otroTelefono" type="string">
+            <column name="otro_telefono" length="30" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion" length="50" />
+        </property>
+        <property name="FRevisacionMedica" type="date">
+            <column name="f_revisacion_medica" length="13" />
+        </property>
+        <property name="FVencChalecoSalv" type="date">
+            <column name="f_venc_chaleco_salv" length="13" />
+        </property>
+        <set name="timeships" table="timeship" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idpuertoorigen" />
+            </key>
+            <one-to-many class="ar.com.syswarp.modelo.Timeship" />
+        </set>
+    </class>
+</hibernate-mapping>

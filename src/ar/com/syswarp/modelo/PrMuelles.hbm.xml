@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26/05/2020 18:38:01 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ar.com.syswarp.modelo.PrMuelles" table="pr_muelles" schema="public" optimistic-lock="version">
+        <id name="idmuelle" type="int">
+            <column name="idmuelle" />
+        <generator class="sequence-identity">
+            <param name="sequence">pr_muelles_idmuelle_seq</param>
+        </generator>
+        </id>
+        <many-to-one name="prPuertos" class="ar.com.syswarp.modelo.PrPuertos" fetch="select">
+            <column name="idpuerto" not-null="true" />
+        </many-to-one>
+        <property name="muelle" type="string">
+            <column name="muelle" length="50" not-null="true" />
+        </property>
+        <property name="kilometro" type="java.lang.Long">
+            <column name="kilometro" precision="18" scale="0" />
+        </property>
+        <property name="emax" type="string">
+            <column name="emax" length="30" />
+        </property>
+        <property name="rv" type="java.lang.Long">
+            <column name="rv" precision="18" scale="0" />
+        </property>
+        <property name="estructura" type="string">
+            <column name="estructura" length="200" />
+        </property>
+        <property name="det" type="big_decimal">
+            <column name="det" precision="18" scale="1" />
+        </property>
+        <property name="latitud" type="java.lang.Double">
+            <column name="latitud" precision="17" scale="17" />
+        </property>
+        <property name="longitud" type="java.lang.Double">
+            <column name="longitud" precision="17" scale="17" />
+        </property>
+        <set name="timeships" table="timeship" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idmuelledestino" />
+            </key>
+            <one-to-many class="ar.com.syswarp.modelo.Timeship" />
+        </set>
+    </class>
+</hibernate-mapping>

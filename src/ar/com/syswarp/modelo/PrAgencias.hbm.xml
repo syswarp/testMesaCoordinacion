@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26/05/2020 18:38:01 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ar.com.syswarp.modelo.PrAgencias" table="pr_agencias" schema="public" optimistic-lock="version">
+        <id name="idagencia" type="int">
+            <column name="idagencia" />
+            
+        <generator class="sequence-identity">
+            <param name="sequence">pr_agencias_idagencia_seq</param>
+        </generator>
+            
+        </id>
+        <property name="alias" type="string">
+            <column name="alias" length="10" not-null="true" unique="true" />
+        </property>
+        <property name="agencia" type="string">
+            <column name="agencia" length="100" not-null="true" unique="true" />
+        </property>
+        <property name="cuit" type="string">
+            <column name="cuit" length="20" not-null="true" />
+        </property>
+        <property name="latitud" type="java.lang.Double">
+            <column name="latitud" precision="17" scale="17" />
+        </property>
+        <property name="longitud" type="java.lang.Double">
+            <column name="longitud" precision="17" scale="17" />
+        </property>
+        <property name="domicilio" type="string">
+            <column name="domicilio" length="100" />
+        </property>
+        <set name="timeships" table="timeship" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idagencia" not-null="true" />
+            </key>
+            <one-to-many class="ar.com.syswarp.modelo.Timeship" />
+        </set>
+    </class>
+</hibernate-mapping>

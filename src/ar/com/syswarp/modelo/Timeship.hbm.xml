@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26/05/2020 18:38:01 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ar.com.syswarp.modelo.Timeship" table="timeship" schema="public" optimistic-lock="version">
+        <id name="idtimeship" type="int">
+            <column name="idtimeship" />
+        <generator class="sequence-identity">
+            <param name="sequence">timeship_idtimeship_seq</param>
+        </generator>
+ 
+        </id>
+        <many-to-one name="prAgencias" class="ar.com.syswarp.modelo.PrAgencias" fetch="select">
+            <column name="idagencia" not-null="true" />
+        </many-to-one>
+        <many-to-one name="prBuques" class="ar.com.syswarp.modelo.PrBuques" fetch="select">
+            <column name="idbuque" />
+        </many-to-one>
+        <many-to-one name="prEmpresasCoordinacion" class="ar.com.syswarp.modelo.PrEmpresasCoordinacion" fetch="select">
+            <column name="idempresacoordinacion" />
+        </many-to-one>
+        <many-to-one name="prMuelles" class="ar.com.syswarp.modelo.PrMuelles" fetch="select">
+            <column name="idmuelledestino" />
+        </many-to-one>
+        <many-to-one name="prPracticos" class="ar.com.syswarp.modelo.PrPracticos" fetch="select">
+            <column name="idpuertoorigen" />
+        </many-to-one>
+        <many-to-one name="prPuertosByIdpuertoorigen" class="ar.com.syswarp.modelo.PrPuertos" update="false" insert="false" fetch="select">
+            <column name="idpuertoorigen" />
+        </many-to-one>
+        <many-to-one name="prPuertosByIdpuertodestino" class="ar.com.syswarp.modelo.PrPuertos" fetch="select">
+            <column name="idpuertodestino" />
+        </many-to-one>
+        <many-to-one name="usuariosByIdusuarioact" class="ar.com.syswarp.modelo.Usuarios" fetch="select">
+            <column name="idusuarioact" />
+        </many-to-one>
+        <many-to-one name="usuariosByIdusuarioalt" class="ar.com.syswarp.modelo.Usuarios" fetch="select">
+            <column name="idusuarioalt" />
+        </many-to-one>
+        <property name="etaRecalada" type="timestamp">
+            <column name="eta_recalada" length="29" />
+        </property>
+        <property name="etaZonaComun" type="timestamp">
+            <column name="eta_zona_comun" length="29" />
+        </property>
+        <property name="etaZonaRada" type="timestamp">
+            <column name="eta_zona_rada" length="29" />
+        </property>
+        <property name="fechaZarpa" type="timestamp">
+            <column name="fecha_zarpa" length="29" />
+        </property>
+        <property name="idpracticoAsignado" type="java.lang.Integer">
+            <column name="idpractico_asignado" />
+        </property>
+        <property name="observaciones" type="string">
+            <column name="observaciones" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26/05/2020 18:38:01 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ar.com.syswarp.modelo.Usuarios" table="usuarios" schema="public" optimistic-lock="version">
+        <id name="idusuario" type="int">
+            <column name="idusuario" />
+        <generator class="sequence-identity">
+            <param name="sequence">usuarios_idusuario_seq</param>
+        </generator>
+        </id>
+        <many-to-one name="tiposusuarios" class="ar.com.syswarp.modelo.Tiposusuarios" fetch="select">
+            <column name="idtipousuario" not-null="true" />
+        </many-to-one>
+        <property name="email" type="string">
+            <column name="email" length="70" not-null="true" unique="true" />
+        </property>
+        <property name="clave" type="string">
+            <column name="clave" length="30" not-null="true" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="nombre" length="100" not-null="true" />
+        </property>
+        <property name="habilitado" type="string">
+            <column name="habilitado" length="1" not-null="true" />
+        </property>
+        <set name="timeshipsForIdusuarioact" table="timeship" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idusuarioact" />
+            </key>
+            <one-to-many class="ar.com.syswarp.modelo.Timeship" />
+        </set>
+        <set name="timeshipsForIdusuarioalt" table="timeship" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idusuarioalt" />
+            </key>
+            <one-to-many class="ar.com.syswarp.modelo.Timeship" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26/05/2020 18:38:01 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ar.com.syswarp.modelo.PrEmpresasCoordinacion" table="pr_empresas_coordinacion" schema="public" optimistic-lock="version">
+        <id name="idempresacoordinacion" type="int">
+            <column name="idempresacoordinacion" />
+        <generator class="sequence-identity">
+            <param name="sequence">pr_empresas_coordinacion_idempresacoordinacion_seq</param>
+        </generator>
+        </id>
+        <property name="empresa" type="string">
+            <column name="empresa" length="100" not-null="true" unique="true" />
+        </property>
+        <property name="cuit" type="string">
+            <column name="cuit" length="20" not-null="true" />
+        </property>
+        <property name="domicilio" type="string">
+            <column name="domicilio" length="100" />
+        </property>
+        <set name="timeships" table="timeship" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idempresacoordinacion" />
+            </key>
+            <one-to-many class="ar.com.syswarp.modelo.Timeship" />
+        </set>
+    </class>
+</hibernate-mapping>

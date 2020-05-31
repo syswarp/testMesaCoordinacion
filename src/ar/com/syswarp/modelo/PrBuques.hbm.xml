@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26/05/2020 18:38:01 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ar.com.syswarp.modelo.PrBuques" table="pr_buques" schema="public" optimistic-lock="version">
+        <id name="idbuque" type="int">
+            <column name="idbuque" />
+        <generator class="sequence-identity">
+            <param name="sequence">pr_buques_idbuque_seq</param>
+        </generator>
+            
+        </id>
+        <property name="imo" type="string">
+            <column name="imo" length="10" not-null="true" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="nombre" length="50" not-null="true" />
+        </property>
+        <property name="flag" type="string">
+            <column name="flag" length="10" not-null="true" />
+        </property>
+        <property name="grt" type="big_decimal">
+            <column name="grt" precision="18" />
+        </property>
+        <property name="eslora" type="big_decimal">
+            <column name="eslora" precision="18" />
+        </property>
+        <property name="manga" type="big_decimal">
+            <column name="manga" precision="18" />
+        </property>
+        <property name="puntal" type="big_decimal">
+            <column name="puntal" precision="18" />
+        </property>
+        <property name="coef" type="big_decimal">
+            <column name="coef" precision="18" />
+        </property>
+        <property name="grtfac" type="big_decimal">
+            <column name="grtfac" precision="18" />
+        </property>
+        <property name="coeffac" type="big_decimal">
+            <column name="coeffac" precision="18" />
+        </property>
+        <set name="timeships" table="timeship" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idbuque" />
+            </key>
+            <one-to-many class="ar.com.syswarp.modelo.Timeship" />
+        </set>
+    </class>
+</hibernate-mapping>

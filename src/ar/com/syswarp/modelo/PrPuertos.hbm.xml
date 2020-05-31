@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26/05/2020 18:38:01 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ar.com.syswarp.modelo.PrPuertos" table="pr_puertos" schema="public" optimistic-lock="version">
+        <id name="idpuerto" type="int">
+            <column name="idpuerto" />
+        <generator class="sequence-identity">
+            <param name="sequence">pr_puertos_idpuerto_seq</param>
+        </generator>
+            
+
+        </id>
+        <property name="puerto" type="string">
+            <column name="puerto" length="50" not-null="true" unique="true" />
+        </property>
+        <property name="adicional" type="big_decimal">
+            <column name="adicional" precision="18" not-null="true" />
+        </property>
+        <property name="bonificacion" type="big_decimal">
+            <column name="bonificacion" precision="18" not-null="true" />
+        </property>
+        <property name="interno" type="java.lang.Integer">
+            <column name="interno" />
+        </property>
+        <property name="latitud" type="java.lang.Double">
+            <column name="latitud" precision="17" scale="17" />
+        </property>
+        <property name="longitud" type="java.lang.Double">
+            <column name="longitud" precision="17" scale="17" />
+        </property>
+        <property name="domicilio" type="string">
+            <column name="domicilio" length="100" />
+        </property>
+        <set name="prMuelleses" table="pr_muelles" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idpuerto" not-null="true" />
+            </key>
+            <one-to-many class="ar.com.syswarp.modelo.PrMuelles" />
+        </set>
+        <set name="timeshipsForIdpuertoorigen" table="timeship" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idpuertoorigen" />
+            </key>
+            <one-to-many class="ar.com.syswarp.modelo.Timeship" />
+        </set>
+        <set name="timeshipsForIdpuertodestino" table="timeship" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idpuertodestino" />
+            </key>
+            <one-to-many class="ar.com.syswarp.modelo.Timeship" />
+        </set>
+    </class>
+</hibernate-mapping>
